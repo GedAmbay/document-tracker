@@ -1,0 +1,1 @@
+Five versioned migrations define the nine-table tracking schema, invite-only enrollment, atomic RPCs and integrity guards. Tested in disposable embedded PostgreSQL only; no hosted database has been changed. Follow docs/auth-setup.md for a local Supabase stack. Add a new migration instead of editing an already applied version.

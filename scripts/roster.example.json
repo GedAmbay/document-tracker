@@ -1,0 +1,9 @@
+[
+  {"slot":1,"email":"admin@example.com","displayName":"BAC Administrator","role":"admin"},
+  {"slot":2,"email":"staff2@example.com","displayName":"BAC Employee 2","role":"staff"},
+  {"slot":3,"email":"staff3@example.com","displayName":"BAC Employee 3","role":"staff"},
+  {"slot":4,"email":"staff4@example.com","displayName":"BAC Employee 4","role":"staff"},
+  {"slot":5,"email":"staff5@example.com","displayName":"BAC Employee 5","role":"staff"},
+  {"slot":6,"email":"staff6@example.com","displayName":"BAC Employee 6","role":"staff"},
+  {"slot":7,"email":"staff7@example.com","displayName":"BAC Employee 7","role":"staff"}
+]

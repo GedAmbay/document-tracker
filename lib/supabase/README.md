@@ -1,0 +1,1 @@
+Request-scoped server-only user clients, public-key validation, cookie persistence and session proxy. No browser or privileged application client. database.types.ts mirrors the migrations; compare locally generated Supabase types after schema changes while preserving row aliases.

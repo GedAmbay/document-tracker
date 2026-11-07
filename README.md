@@ -1,36 +1,22 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+﻿# DocTrack
 
-## Getting Started
+Standalone mobile-first document tracking for seven authorized BAC employees. Supabase Auth and the nine-table PostgreSQL tracking implementation are now present. No hosted migration, real employee provisioning or deployment has been performed.
 
-First, run the development server:
+## Setup
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Use Node.js 22.22.2+ or 24.15+ and npm. Run npm ci, then follow [authentication/database setup](docs/auth-setup.md) for a disposable local Supabase stack, private roster and invitations. Application configuration is documented in .env.example. With no configuration the app remains locked at login. Public registration is disabled.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The old mock UI is available only on a development server with DOCTRACK_DEMO_MODE=true; production ignores that flag. See [mock guide](docs/mock-interface.md). Normal mode uses user-scoped server actions and RLS for packet registration, tracking, configuration and access changes.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Checks
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- npm run check: lint, strict types and unit tests.
+- npm run test:db: migrations and RLS/RPC/integrity tests in embedded PostgreSQL.
+- npm run test:auth:local: optional real local Auth/PostgREST tests; explicitly skips without a local test endpoint.
+- npm run build: production compile, no deployment.
+- npm run test:e2e: secure desktop/mobile route tests; PLAYWRIGHT_PRODUCTION=1 tests the production build.
+- npm run provision:users -- --roster=PATH: roster-only dry run. Explicit --apply-local is required for local account creation and invitations; remote targets are refused.
 
-## Learn More
+Read [database design](docs/database-design.md), [permission testing](docs/database-testing.md), [architecture](docs/architecture.md), [requirements](docs/requirements.md) and [integration contract](docs/integration-contract.md). Forwarding never confirms receipt; receipt events require a pending transfer, exact documents, recipient and acknowledgment reference.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Full local Supabase Auth/mail testing, approved real roster/column reconciliation, independent-session race testing and backup restoration remain pilot gates. Production changes require explicit approval.
